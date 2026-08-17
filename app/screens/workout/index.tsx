@@ -42,6 +42,7 @@ export default function index() {
       />
     </View>
   );
+}
 
 const styles = StyleSheet.create({
   container: {
