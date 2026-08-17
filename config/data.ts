@@ -8,7 +8,7 @@ export const workoutData: WorkoutData[] = [
       "A balanced routine to target all major muscle groups and boost overall fitness.",
     duration: 45,
     image: require("@/assets/images/react-logo.png"),
-
+    icon: "body",
     caloriesBurned: 420,
     exercises: [
       { id: 1, name: "Jumping Jacks" },
@@ -25,6 +25,7 @@ export const workoutData: WorkoutData[] = [
       "High-energy cardio session designed to increase heart rate and improve endurance.",
     duration: 40,
     image: require("@/assets/images/react-logo.png"),
+    icon: "flame",
     caloriesBurned: 500,
     exercises: [
       { id: 1, name: "High Knees" },
@@ -41,6 +42,7 @@ export const workoutData: WorkoutData[] = [
       "Focused strength training with bodyweight and resistance movements.",
     duration: 50,
     image: require("@/assets/images/react-logo.png"),
+    icon: "barbell",
     caloriesBurned: 460,
     exercises: [
       { id: 1, name: "Lunges" },
@@ -57,6 +59,7 @@ export const workoutData: WorkoutData[] = [
       "A core-centric workout to strengthen abs, obliques, and lower back stability.",
     duration: 35,
     image: require("@/assets/images/react-logo.png"),
+    icon: "square",
     caloriesBurned: 360,
     exercises: [
       { id: 1, name: "Russian Twists" },
@@ -73,6 +76,7 @@ export const workoutData: WorkoutData[] = [
       "Build upper body strength with a mix of pushing and pulling exercises.",
     duration: 45,
     image: require("@/assets/images/react-logo.png"),
+    icon: "arrow-up-circle",
     caloriesBurned: 410,
     exercises: [
       { id: 1, name: "Shoulder Taps" },
@@ -89,6 +93,7 @@ export const workoutData: WorkoutData[] = [
       "A low-impact session focused on mobility, stretching, and recovery.",
     duration: 30,
     image: require("@/assets/images/react-logo.png"),
+    icon: "leaf",
     caloriesBurned: 220,
     exercises: [
       { id: 1, name: "Cat-Cow Stretch" },

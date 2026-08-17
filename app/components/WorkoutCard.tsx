@@ -29,9 +29,19 @@ export default function WorkoutCard({ data, onPress }: Props) {
       <Link href={`/screens/workout/${data?.id}`}>
         <View style={styles.card}>
           <View style={styles.imageContainer}>
-            <Image source={data.image} style={{ width: 100, height: 100 }} />
+            <Ionicons name={data.icon} size={48} color={colors.playbutton} />
           </View>
           <Text style={styles.title}>{data.title}</Text>
+          <View style={styles.infoContainer}>
+            <View style={styles.infoBadge}>
+              <Ionicons name="time" size={14} color={colors.playbutton} />
+              <Text style={styles.infoText}>{data.duration} min</Text>
+            </View>
+            <View style={styles.infoBadge}>
+              <Ionicons name="flame" size={14} color={colors.playbutton} />
+              <Text style={styles.infoText}>{data.caloriesBurned} cal</Text>
+            </View>
+          </View>
           <Text style={styles.description}>{data.description}</Text>
         </View>
       </Link>
@@ -42,22 +52,54 @@ export default function WorkoutCard({ data, onPress }: Props) {
 const styles = StyleSheet.create({
   imageContainer: {
     marginBottom: 10,
+    backgroundColor: colors.background,
+    borderRadius: 15,
+    padding: 16,
+    justifyContent: "center",
+    alignItems: "center",
   },
   likeIcon: { position: "absolute", top: 10, right: 10, zIndex: 1 },
   card: {
-    borderRadius: 10,
-    padding: 10,
+    backgroundColor: colors.white,
+    borderRadius: 15,
+    padding: 12,
     alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   title: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "bold",
     textAlign: "center",
-    marginBottom: 5,
+    marginBottom: 8,
+    color: colors.black,
+  },
+  infoContainer: {
+    flexDirection: "row",
+    gap: 8,
+    marginBottom: 8,
+  },
+  infoBadge: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+    backgroundColor: colors.background,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    borderRadius: 8,
+  },
+  infoText: {
+    fontSize: 12,
+    fontWeight: "600",
+    color: colors.black,
   },
   description: {
-    fontSize: 14,
+    fontSize: 13,
     textAlign: "center",
-    color: "gray",
+    color: colors.gray,
+    lineHeight: 18,
   },
 });

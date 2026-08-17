@@ -4,6 +4,7 @@ export type WorkoutData = {
   description: string;
   duration: number;
   image: any;
+  icon: string;
   caloriesBurned: number;
   exercises: {
     id: number;

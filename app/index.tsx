@@ -7,7 +7,6 @@ export default function Index() {
     <View
       style={{
         flex: 1,
-        padding: 20,
         backgroundColor: colors.white,
       }}
     >

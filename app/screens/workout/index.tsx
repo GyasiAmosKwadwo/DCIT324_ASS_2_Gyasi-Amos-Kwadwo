@@ -12,53 +12,65 @@ import {
 } from "react-native";
 
 export default function index() {
-  const onCardPress = (id: string) => {};
+  const onCardPress = (id: string) => {
+    // Navigation handled by Link in WorkoutCard
+  };
   return (
-    <View>
-      {/* <ScrollView> */}
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: 20,
-          marginBottom: 20,
-        }}
-      >
+    <View style={styles.container}>
+      <View style={styles.headerContainer}>
         <TouchableOpacity style={styles.button}>
           <Ionicons name="close-outline" size={24} color={colors.black} />
         </TouchableOpacity>
-        <Text style={{ fontSize: 25, fontWeight: "bold" }}>Start Workout</Text>
+        <Text style={styles.headerTitle}>Workouts</Text>
         <TouchableOpacity style={styles.button}>
           <Ionicons name="menu" size={24} color={colors.black} />
         </TouchableOpacity>
       </View>
 
-      <View>
-        <FlatList
-          data={workoutData}
-          renderItem={({ item }) => (
-            <WorkoutCard
-              key={item.id}
-              data={item}
-              onPress={() => onCardPress(item.id)}
-            />
-          )}
-          keyExtractor={(item) => item.id.toString()}
-          numColumns={2}
-        />
-      </View>
-      {/* </ScrollView> */}
+      <FlatList
+        data={workoutData}
+        renderItem={({ item }) => (
+          <WorkoutCard
+            key={item.id}
+            data={item}
+            onPress={() => onCardPress(item.id)}
+          />
+        )}
+        keyExtractor={(item) => item.id.toString()}
+        numColumns={2}
+        scrollEnabled={true}
+      />
     </View>
   );
-}
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
+  headerContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: "#f0f0f0",
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: colors.black,
+  },
   button: {
-    padding: 20,
+    padding: 12,
     borderRadius: 50,
-    borderBlockColor: "gray",
+    borderColor: colors.gray,
     borderWidth: 1,
     backgroundColor: colors.white,
+    width: 50,
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

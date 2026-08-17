@@ -15,11 +15,18 @@ import {
 
 export default function CategoriesDetails() {
   const { id } = useLocalSearchParams();
-  const [loading, setLoading] = useState(true);
+  const [isWorkoutStarted, setIsWorkoutStarted] = useState(false);
   const navigation = useNavigation();
-  // const [data, setData] = useState(null);
 
   const data = workoutData.find((item) => item.id === id);
+
+  if (!data) {
+    return (
+      <View style={styles.container}>
+        <Text>Workout not found</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -53,16 +60,24 @@ export default function CategoriesDetails() {
             style={{
               alignItems: "center",
               position: "absolute",
-              top: -34,
+              top: -40,
               left: 0,
               right: 0,
             }}
           >
-            <Pressable>
-              <View style={styles.playBtnContainer}>
-                <Ionicons name="play" size={20} color={colors.white} />
-              </View>
+            <Pressable
+              onPress={() => setIsWorkoutStarted(!isWorkoutStarted)}
+              style={styles.playBtnContainer}
+            >
+              <Ionicons
+                name={isWorkoutStarted ? "checkmark" : "play"}
+                size={24}
+                color={colors.white}
+              />
             </Pressable>
+            <Text style={styles.workoutStatus}>
+              {isWorkoutStarted ? "Completed" : "Start Workout"}
+            </Text>
           </View>
 
           <Text
@@ -76,29 +91,30 @@ export default function CategoriesDetails() {
             Exercises
           </Text>
 
-          <View>
-            <FlatList
-              data={data?.exercises}
-              renderItem={({ item }) => (
-                <View style={styles.exerciseContainer}>
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      alignItems: "center",
-                      gap: 30,
-                    }}
-                  >
-                    <View style={styles.exerciseLogo}></View>
-                    <Text style={{ textAlign: "left", fontSize: 20 }}>
-                      {item.name}
-                    </Text>
+          <FlatList
+            data={data?.exercises}
+            renderItem={({ item }) => (
+              <View style={styles.exerciseContainer}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 20,
+                  }}
+                >
+                  <View style={styles.exerciseLogo}>
+                    <Ionicons name="fitness" size={24} color={colors.playbutton} />
                   </View>
-                  <Ionicons name="chevron-forward" size={20} />
+                  <Text style={{ textAlign: "left", fontSize: 16, flex: 1 }}>
+                    {item.name}
+                  </Text>
                 </View>
-              )}
-              keyExtractor={(item) => item.id.toString()}
-            />
-          </View>
+                <Ionicons name="chevron-forward" size={18} color={colors.gray} />
+              </View>
+            )}
+            keyExtractor={(item) => item.id.toString()}
+            scrollEnabled={false}
+          />
         </View>
       </View>
     </View>
@@ -175,11 +191,22 @@ const styles = StyleSheet.create({
 
   playBtnContainer: {
     backgroundColor: colors.playbutton,
-    width: 70,
-    height: 70,
+    width: 80,
+    height: 80,
     borderRadius: 100,
     justifyContent: "center",
     alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 8,
+  },
+  workoutStatus: {
+    marginTop: 12,
+    fontSize: 16,
+    fontWeight: "600",
+    color: colors.playbutton,
   },
 
   exerciseContainer: {
@@ -190,9 +217,9 @@ const styles = StyleSheet.create({
   },
   exerciseLogo: {
     backgroundColor: colors.background,
-    height: 60,
-    width: 60,
-    borderRadius: 100,
+    height: 56,
+    width: 56,
+    borderRadius: 28,
     alignItems: "center",
     justifyContent: "center",
   },
